@@ -1,6 +1,12 @@
 /*
 jQuery to get html element as var
 */
+
+/*
+Array of names to identify IDs for buttons textareas etc
+ button id names are : hourNames[] + 'btn'
+ text areas id area: hourNames[] + 'noteText'
+*/
 let hourNames = ['1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am',
     '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm',
     '8pm', '9pm', '10pm', '11pm']
@@ -19,14 +25,25 @@ function setStorage() {
 }
 
 /*
+set a single item from localStorage
+*/
+function setStorage(elem, data) {
+    console.log("Called set single storage");
+    // set storage
+    localStorage.setItem(elem, data );
+}
+/*
 get all items from localStorage
 */
 function getStorage() {
     console.log("Called get storage");
+    debugger;
     for (var i = 0; i < hourNames.length; i++) {
      // get from storage
-        let data = localStorage.getItem($('#' + hourNames[i] + 'note'));
+        
+        let data = localStorage.getItem(hourNames[i]);
         if (data != undefined) {
+            document.getElementById(hourNames[i] + 'noteText').value = data;
             
         }
     }
@@ -34,20 +51,6 @@ function getStorage() {
 
 getStorage();
  
-/*
-get a single item from localStorage
-*/
-function getStorage(elem) {
-    console.log("Called get storage");
-    for (var i = 0; i < hourNames.length; i++) {
-     // get from storage
-        let data = localStorage.getItem($('#' + hourNames[i] + 'note'));
-        if (data != undefined) {
-            
-        }
-    }
-}
-
 /*
   reset all notes areas styles based on relative time to current time ( past, present, future)
 */
@@ -75,7 +78,7 @@ function updateTimeFrames(){
         } else {
             elem[0].classList.add("future");
         }
-    }    
+    }
 }
 
 updateTimeFrames();
@@ -83,9 +86,16 @@ updateTimeFrames();
 /*
 process click on save button
 */
-saveButton.on('click', function () {
+saveButton.on('click', function (event) {
     // check which button was clicked and save those notes
-
+    debugger;
+    var id = event.target.id;
+    console.log(id);
+    id = id.slice(0, -3);
+    var txt = document.getElementById(id + 'noteText').value;
+    if (txt != undefined && txt != "") {
+        setStorage(id, txt)
+    }
 });
 
 /*
@@ -95,4 +105,3 @@ meetingNotes.on('click', function () {
     // check which area was clicked to edit
 
 });
-
