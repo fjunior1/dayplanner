@@ -11,10 +11,12 @@ function setStorage() {
     
 }
 
-function getstorage() {
-    
+function getStorage() {
+    debugger;
+    console.log("Called get storage");
 }
 
+getStorage();
 /*
 process click on save button
 */
