@@ -15,8 +15,8 @@ textarea {
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
-  color: black;
+  background-color: rgb(137, 202, 31) /*transparent*/;
+  color: rgb(95, 95, 95)/*black*/;
   border-radius: 0;
   border-bottom: 10px solid black;
 }
@@ -59,8 +59,8 @@ textarea {
 
 .saveBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   background-color: #06aed5;
   color: white;
 }
@@ -69,3 +69,39 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+ /*
+    This area down is the new css styles applied
+
+ */
+
+.container {
+   display: flex;
+   flex-direction: column;
+}
+
+.timeframe {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.time {
+  flex: 1 1 1;
+  /*flex-wrap: nowrap;*/
+  vertical-align: middle;
+  padding-top: 10px;
+  margin-right: 2px;
+}
+.notes {
+   background-color: darkgrey;
+   padding: 1px;
+   flex: 10 5 0;
+}
+.btn {
+  border: none;
+  background-color: none;
+  vertical-align: middle;
+  flex: 3 1 0;
+}
+
