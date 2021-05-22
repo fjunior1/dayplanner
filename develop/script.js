@@ -14,6 +14,14 @@ let hourNames = ['1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', 
 
 var saveButton = $('.btn'); // var to get save buttons
 var meetingNotes = $(".notes"); // meeting notes area var 
+var todayTxt = $();
+    
+function updateTodaysDate() {
+    var m1 = moment().format('MMMM Do YYYY');
+    $('#currentDay')[0].innerText = m1;
+}
+
+updateTodaysDate();
 
 /*
 get and set local storage
@@ -30,14 +38,19 @@ set a single item from localStorage
 function setStorage(elem, data) {
     console.log("Called set single storage");
     // set storage
-    localStorage.setItem(elem, data );
+    if (data != undefined && data != "") {
+        localStorage.setItem(elem, data);
+    } else {
+        debugger;
+        // if no data then remove element from localStorage
+        localStorage.remove(elem);
+    }
 }
 /*
 get all items from localStorage
 */
 function getStorage() {
     console.log("Called get storage");
-    debugger;
     for (var i = 0; i < hourNames.length; i++) {
      // get from storage
         
@@ -88,13 +101,15 @@ process click on save button
 */
 saveButton.on('click', function (event) {
     // check which button was clicked and save those notes
-    debugger;
     var id = event.target.id;
     console.log(id);
     id = id.slice(0, -3);
     var txt = document.getElementById(id + 'noteText').value;
     if (txt != undefined && txt != "") {
         setStorage(id, txt)
+    } else {
+        debugger;
+        localStorage.removeItem(id);
     }
 });
 
@@ -103,5 +118,4 @@ process click on notes to edit
 */
 meetingNotes.on('click', function () {
     // check which area was clicked to edit
-
 });
