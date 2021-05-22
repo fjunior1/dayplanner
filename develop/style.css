@@ -93,11 +93,19 @@ textarea {
   padding-top: 10px;
   margin-right: 2px;
 }
+
 .notes {
-   background-color: darkgrey;
+  /* background-color: darkgrey;*/
    padding: 1px;
    flex: 10 5 0;
 }
+
+.notesText{
+  width: 100%;
+  word-wrap: normal;
+ /* background-color:purple;*/
+}
+
 .btn {
   border: none;
   background-color: none;
