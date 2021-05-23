@@ -1,6 +1,4 @@
-/*
-jQuery to get html element as var
-*/
+
 
 /*
 Array of names to identify IDs for buttons textareas etc
@@ -11,26 +9,19 @@ let hourNames = ['1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', 
     '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm',
     '8pm', '9pm', '10pm', '11pm']
 
-
+/*
+jQuery to get html element as var
+*/
 var saveButton = $('.btn'); // var to get save buttons
 var meetingNotes = $(".notes"); // meeting notes area var 
-var todayTxt = $();
-    
+
+
 function updateTodaysDate() {
     var m1 = moment().format('MMMM Do YYYY');
     $('#currentDay')[0].innerText = m1;
 }
 
 updateTodaysDate();
-
-/*
-get and set local storage
-*/
-function setStorage() {
-    for (var i = 0; i < hourNames.length; i++) {
-        localStorage.setItem("email", $('#'+ hourNames[i] +'note'));
-    }
-}
 
 /*
 set a single item from localStorage
@@ -52,18 +43,16 @@ get all items from localStorage
 function getStorage() {
     console.log("Called get storage");
     for (var i = 0; i < hourNames.length; i++) {
-     // get from storage
-        
+        // get from storage
         let data = localStorage.getItem(hourNames[i]);
         if (data != undefined) {
             document.getElementById(hourNames[i] + 'noteText').value = data;
-            
         }
     }
 }
 
 getStorage();
- 
+
 /*
   reset all notes areas styles based on relative time to current time ( past, present, future)
 */
@@ -73,20 +62,20 @@ function resetClasses(element) {
     element[0].classList.remove("future");
 }
 
-    /*use actual hour to change timeframe background colors
-      use class past, present and future */
-function updateTimeFrames(){
-  var d = new Date();
-  var hour = d.getHours();
+/*use actual hour to change timeframe background colors
+  use class past, present and future */
+function updateTimeFrames() {
+    var d = new Date();
+    var hour = d.getHours();
 
-    for (var i = 0; i < hourNames.length; i++){
-        var elem = $('#' + hourNames[i]+'note');
+    for (var i = 0; i < hourNames.length; i++) {
+        var elem = $('#' + hourNames[i] + 'note');
         resetClasses(elem);
         //easy way to find hour in list it is the index (zero based) !!!
         // the hour returned is 24hr based so the list
-        if ((hour === 0) || (hour > (i+1))) {
+        if ((hour === 0) || (hour > (i + 1))) {
             elem[0].classList.add("past");
-        } else if (hour === (i+1)) {
+        } else if (hour === (i + 1)) {
             elem[0].classList.add("present");
         } else {
             elem[0].classList.add("future");
