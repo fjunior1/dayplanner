@@ -90,7 +90,7 @@ textarea {
   flex: 1 1 1;
   /*flex-wrap: nowrap;*/
   vertical-align: middle;
-  padding-top: 10px;
+  margin-top: 25px;
   margin-right: 2px;
 }
 
@@ -110,6 +110,7 @@ textarea {
   border: none;
   background-color: none;
   vertical-align: middle;
+  margin-top: 15px;
   flex: 3 1 0;
 }
 
